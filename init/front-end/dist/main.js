@@ -1,3 +1,8 @@
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+var __webpack_exports__ = {};
+
+;// CONCATENATED MODULE: ./src/app/scripts/router.js
   /**
    * Append an html template to the document, at the given outlet.
    * @param HTMLElement outlet the location on the document to add the template
@@ -15,7 +20,7 @@
    * @param {HTMLElement} outlet The element to put components into.
    */
   // TODO #export-router: export this function
-  export function Router(outlet) {
+  function Router(outlet) {
     this._components = {};
     this._templates = {};
     this._outlet = outlet;
@@ -135,3 +140,36 @@
     };
     xhr.send();
   }
+
+;// CONCATENATED MODULE: ./src/main.js
+
+
+// TODO #import-components: use ES named imports to import WelcomeComponent, GameComponent a ScoreComponent
+// TODO #import-css: use ES side-effect imports to import styles/style.css
+
+const outlet = document.querySelector("#content-outlet");
+const router = new Router(outlet);
+router
+  .register("", {
+    component: WelcomeComponent,
+    // TODO #import-html: remove the templateUrl property.
+    templateUrl: "/src/app/views/welcome.html",
+  })
+  .register("welcome", {
+    component: WelcomeComponent,
+    // TODO #import-html: remove the templateUrl property.
+    templateUrl: "/src/app/views/welcome.html",
+  })
+  .register("game", {
+    component: GameComponent,
+    // TODO #import-html: remove the templateUrl property.
+    templateUrl: "/src/app/views/game.html",
+  })
+  .register("score", {
+    component: ScoreComponent,
+    // TODO #import-html: remove the templateUrl property.
+    templateUrl: "/src/app/views/score.html",
+  });
+
+/******/ })()
+;

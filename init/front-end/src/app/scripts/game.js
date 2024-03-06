@@ -37,31 +37,25 @@ export class GameComponent extends Component{
   init() {
     // fetch the cards configuration from the server
     this.fetchConfig(
-        // TODO #arrow-function: use arrow function instead.
         (config) => {
           this._config = config;
           this._boardElement = document.querySelector(".cards");
 
           // create cards out of the config
           this._cards = [];
-          // TODO #functional-programming: use Array.map() instead.
-          for (let i in this._config.ids) {
-            this._cards[i] = new CardComponent(this._config.ids[i]);
-          }
+          this._cards = this._config.ids.map(id => new CardComponent(id));
 
-          // TODO #functional-programming: use Array.forEach() instead.
+
           // TODO #let-const: replace let with let.
-          for (let i in this._cards) {
-            let card = this._cards[i];
+          this._cards.forEach(card => {
             this._boardElement.appendChild(card.getElement());
 
             card.getElement().addEventListener(
                 "click",
-                function () {
-                  this._flipCard(card);
-                }.bind(this)
+                () => this._flipCard(card)
             );
-          }
+          });
+
           this.start();
         }
     );
@@ -95,8 +89,7 @@ export class GameComponent extends Component{
     // TODO #template-literals:  use template literals (backquotes)
     xhr.open("get", environment.api.host + "/board?size=" + this._size, true);
 
-    // TODO #arrow-function: use arrow function instead.
-    xhr.onreadystatechange = () => {
+    xhr.onreadystatechange = (() => {
       let status;
       let data;
       // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
@@ -110,7 +103,7 @@ export class GameComponent extends Component{
           throw new Error(status);
         }
       }
-    };
+    });
     xhr.send();
   };
 

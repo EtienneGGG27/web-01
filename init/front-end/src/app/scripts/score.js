@@ -1,4 +1,6 @@
 import { parseUrl } from "./utils";
+import template from "../views/score.html";
+
 
 
   // TODO #class: use the ES6 class keyword
@@ -6,6 +8,7 @@ import { parseUrl } from "./utils";
   export function ScoreComponent() {
     // TODO #extends: call super(template)
     var params = parseUrl();
+    this.template = template;
     // TODO #import-html: assign template to this.template
     this.name = params.name;
     this.size = parseInt(params.size);

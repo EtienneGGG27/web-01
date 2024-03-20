@@ -1,5 +1,5 @@
-import template from "../views/welcome.html";
-import {Component} from "./component";
+import template from "./welcome.component.html";
+import {Component} from "../../scripts/component";
 
 
   // TODO #class: use the ES6 class keyword

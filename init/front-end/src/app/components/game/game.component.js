@@ -1,4 +1,4 @@
-import {Component} from "./component";
+import {Component} from "../../scripts/component";
 
 let CARD_TEMPLATE = ""
     .concat('<main class="card-cmp">')
@@ -8,8 +8,8 @@ let CARD_TEMPLATE = ""
     .concat("  </div>")
     .concat("</main>");
 
-import template from "../views/game.html";
-import { parseUrl } from "./utils";
+import template from "./game.component.html";
+import { parseUrl } from "../../scripts/utils";
 
 
 let environment = {

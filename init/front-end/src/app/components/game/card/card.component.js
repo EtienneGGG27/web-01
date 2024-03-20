@@ -32,7 +32,6 @@ let CARDS_IMAGE = [
 ];
 
 
-
 export class CardComponent extends  Component{
     constructor(id){
         super(template)

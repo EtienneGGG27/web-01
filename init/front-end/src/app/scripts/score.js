@@ -9,7 +9,7 @@ import {Component} from "./component";
       super(template)
       let params = parseUrl();
       this.template = template;
-      this.name = name;
+      this.name = params.name;
       this.size = parseInt(params.size);
       this.time = parseInt(params.time);
     }

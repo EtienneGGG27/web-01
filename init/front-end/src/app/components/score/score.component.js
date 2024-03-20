@@ -16,9 +16,6 @@ import "./score.component.css";
       this.time = parseInt(params.time);
     }
 
-
-    // TODO #class: turn function into a method of ScoreComponent
-    /* method ScoreComponent.init */
     init() {
       document.getElementById("name").innerText = this.name;
       document.getElementById("size").innerText = this.size;

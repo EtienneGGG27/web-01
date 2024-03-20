@@ -2,7 +2,6 @@ import { Component } from "../../scripts/component";
 import template from "../welcome/welcome.component.html";
 import "./welcome.component.css";
 
-  // TODO #class: use the ES6 class keyword
   export class WelcomeComponent extends Component{
     constructor(name) {
       super(template)
@@ -10,7 +9,6 @@ import "./welcome.component.css";
       this.name = name;
     }
 
-    /* method WelcomeComponent.init */
     init() {
       let form = document.querySelector("form.form-signin");
 
@@ -37,7 +35,6 @@ import "./welcome.component.css";
 
     _startGame(name, size) {
       let gamePage = "./#game";
-      // TODO #template-literals:  use template literals (backquotes)
       window.location = `${gamePage}?name=${name}&size=${size}`
       ;
     }

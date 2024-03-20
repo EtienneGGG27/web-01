@@ -3,8 +3,6 @@ import {Component} from "../../../scripts/component";
 import CARD_TEMPLATE from "./card.component.html";
 import template from "./card.component.html";
 
-
-// TODO #card-component: Change images location to /app/components/game/card/assets/***.png
 import back from "./assets/cards/back.png";
 import card0 from "./assets/cards/card-0.png";
 import card1 from "./assets/cards/card-1.png";
@@ -53,23 +51,18 @@ export class CardComponent extends  Component{
     }
 
 
-    /* method CardComponent.getElement */
     getElement() {
         return this._elt;
     };
 
-    /* method CardComponent.flip */
     flip() {
         this._imageElt.classList.toggle("flip");
         this._flipped = !this._flipped;
     };
 
-    /* method CardComponent.equals */
     equals(card) {
         return card._id === this._id;
     };
-
-    /* CardComponent.get flipped() */
 
     get flipped () {
         return this._flipped;

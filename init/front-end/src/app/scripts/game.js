@@ -22,6 +22,8 @@ let environment = {
 /* class GameComponent constructor */
 
 
+
+
 export class GameComponent extends Component{
   constructor(){
     super(template)
@@ -34,31 +36,28 @@ export class GameComponent extends Component{
   }
 
   /* method GameComponent.init */
-  init() {
+  async init() {
     // fetch the cards configuration from the server
-    this.fetchConfig(
-        (config) => {
-          this._config = config;
-          this._boardElement = document.querySelector(".cards");
 
-          // create cards out of the config
-          this._cards = [];
-          this._cards = this._config.ids.map(id => new CardComponent(id));
+    this._config = await this.fetchConfig();
+    this._boardElement = document.querySelector(".cards");
+
+      // create cards out of the config
+      this._cards = [];
+      this._cards = this._config.ids.map(id => new CardComponent(id));
 
 
-          // TODO #let-const: replace let with let.
-          this._cards.forEach(card => {
-            this._boardElement.appendChild(card.getElement());
+      // TODO #let-const: replace let with let.
+      this._cards.forEach(card => {
+        this._boardElement.appendChild(card.getElement());
 
-            card.getElement().addEventListener(
-                "click",
-                () => this._flipCard(card)
-            );
-          });
+        card.getElement().addEventListener(
+            "click",
+            () => this._flipCard(card)
+        );
+      });
 
-          this.start();
-        }
-    );
+      this.start();
   };
 
   /* method GameComponent.start */
@@ -80,32 +79,12 @@ export class GameComponent extends Component{
   };
 
   /* method GameComponent.fetchConfig */
-  fetchConfig(cb) {
-    let xhr =
-        typeof XMLHttpRequest != "undefined"
-            ? new XMLHttpRequest()
-            : new ActiveXObject("Microsoft.XMLHTTP");
+  async fetchConfig() {
+    return fetch(`${environment.api.host}/board?size=${this._size}`).then(
+        (r) => r.json()
+    );
+  }
 
-    // TODO #template-literals:  use template literals (backquotes)
-    xhr.open("get", environment.api.host + "/board?size=" + this._size, true);
-
-    xhr.onreadystatechange = (() => {
-      let status;
-      let data;
-      // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
-      if (xhr.readyState == 4) {
-        // `DONE`
-        status = xhr.status;
-        if (status == 200) {
-          data = JSON.parse(xhr.responseText);
-          cb(data);
-        } else {
-          throw new Error(status);
-        }
-      }
-    });
-    xhr.send();
-  };
 
   /* method GameComponent.goToScore */
   goToScore() {
